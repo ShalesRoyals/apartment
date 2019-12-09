@@ -6,9 +6,9 @@
             $this->db = $conn;
         }
 
-        public function insertResidents($fname,$lname,$email,$gender,$mstatus,$members,$contact,$address1,$destination){
+        public function insertResidents($fname,$lname,$email,$gender,$mstatus,$members,$contact,$address1,$avatar_path){
             try {
-                $sql ="INSERT INTO resident (firstname,lastname,emailaddress,gender,mstatus,members,contactnumber,address_id) VALUES(:fname,:lname,:email,:gender,:mstatus,:members,:contact,:address1)";
+                $sql ="INSERT INTO resident (firstname,lastname,emailaddress,gender,mstatus,members,contactnumber,address_id,avatar_path) VALUES(:fname,:lname,:email,:gender,:mstatus,:members,:contact,:address1,:avatar_path)";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
@@ -18,6 +18,7 @@
                 $stmt->bindparam(':members',$members);
                 $stmt->bindparam(':contact',$contact);
                 $stmt->bindparam(':address1',$address1);
+                $stmt->bindparam(':avatar_path',$avatar_path);
                 $stmt->execute();
                 return true;
             } catch (PDOException $e) {

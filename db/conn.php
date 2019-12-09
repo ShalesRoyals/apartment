@@ -1,16 +1,16 @@
 <?php
-    $host = '127.0.0.1';
+    /*$host = '127.0.0.1';
     $db = 'apartment_db';
     $user = 'root';
     $pass = '';
-    $charset = 'utf8mb4';
+    $charset = 'utf8mb4';*/
 
-    /*//Remote DB Connection
+    //Remote DB Connection
     $host = 'remotemysql.com';
-     $db = 'NuGGkpGRze';
-     $user = 'NuGGkpGRze';
-     $pass = 'jmD1mb0oKq';
-     $charset = 'utf8mb4';*/
+     $db = 'crksZ8janp';
+     $user = 'crksZ8janp';
+     $pass = 'DEuFyv0jwd';
+     $charset = 'utf8mb4';
 
     $dsn = "mysql:host=$host; dbname=$db;charset=$charset";
 

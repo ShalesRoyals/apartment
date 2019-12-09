@@ -4,6 +4,7 @@
     require_once 'db/conn.php';
     require_once 'sendemail.php';
 
+
     if(isset($_POST['submit'])){
         $fname = $_POST['firstname'];
         $lname = $_POST['lastname'];
@@ -18,8 +19,7 @@
         $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
         $target_dir = 'uploads/';
         $destination = "$target_dir$contact.$ext";
-        move_upload_file($orig_file,$destination);
-
+        move_uploaded_file($orig_file,$destination);
 
         //check if insert was successful
         $isSuccess = $crud->insertResidents($fname,$lname,$email,$gender,$address,$mstatus,$members,$contact,$destination);
@@ -42,6 +42,7 @@
 ?>
            
         <!-- Print using $_POST-->
+        <img src="<?php echo $destination; ?>" class="rounded-circle" style="width: 30%; height: 30%"/>
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title"><?php  echo  $_POST ['firstname'] .' '. $_POST ['lastname'] ?> </h5>

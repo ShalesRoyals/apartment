@@ -17,15 +17,19 @@
 
         <h1 class= "text-center">Edit Record</h1>
             <!--<form method="get" action="success.php">-->
-          
-      <div class="jumbotron">
+            <div class="jumbotron">
         <form method="post" action="success.php">
+         <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">First Name</span>
+                </div>
+                <input required type="text" class="form-control" id="firstname" name="firstname">
+            </div><br>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">First and Last name</span>
+                    <span class="input-group-text">Last Name</span>
                 </div>
-            <input type="text" aria-label="First name" class="form-control">
-            <input type="text" aria-label="Last name" class="form-control">
+                <input required type="text" class="form-control" id="lastname" name="lastname">
             </div><br>
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -33,19 +37,15 @@
                 </div>
                 <input required type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
             </div><br>
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Gender</span>
                 </div>
-            <br>
-            <div class="custom-control custom-radio custom-control-inline">
-                <br>
-                <input type="radio" id="male" name="male" class="custom-control-input">
-                <label class="custom-control-label" for="male">Male</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="female" name="female" class="custom-control-input">
-                <label class="custom-control-label" for="female">Female</label>
-            </div><br><br>
+             <select class="form-control" id="gender" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+             </select>
+            </div><br>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Address</span>
@@ -56,23 +56,16 @@
                    <?php } ?>
                 </select>
             </div><br>
-            <div class="input-group-prepend">
+            <div class="input-group">
+                <div class="input-group-prepend">
                     <span class="input-group-text">Marital Status</span>
-            </div>
-            <br>
-            <div class="custom-control custom-radio custom-control-inline">
-                <br>
-                <input type="radio" id="single" name="single" class="custom-control-input">
-                <label class="custom-control-label" for="single">Single</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="married" name="married" class="custom-control-input">
-                <label class="custom-control-label" for="married">Married</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="divorced" name="divorced" class="custom-control-input">
-                <label class="custom-control-label" for="divorced">Divorced</label>
-            </div><br><br>
+                </div>
+             <select class="form-control" id="mstatus" name="mstatus">
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+             </select>
+            </div><br>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Number of Household Members</span>
@@ -87,12 +80,14 @@
             </div>
             <br>
             <div class="custom-file">
-                <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar">
-                <label class="custom-file-label" for= "avatar">Choose File</label>
-                <small id="avatar" class="form-text text-info"> File upload is optional.</small>
+                <input type="file" accept="image/*" class="custom-file-input" id="avatar" name="avatar" >
+                <label class="custom-file-label" for="avatar">Choose File</label>
+                <small id="avatar" class="form-text text-info">File Upload is Optional</small>
             </div>
-                <button type="submit" name="submit" class="btn btn-success btn-block">Save Changes</button>
-            </form>
+            <button type="submit" name="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+     </div>
+     
            
     <?php } ?>
 <br>
