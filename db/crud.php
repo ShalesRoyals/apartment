@@ -6,18 +6,20 @@
             $this->db = $conn;
         }
 
-        public function insertResidents($fname,$lname,$email,$gender,$mstatus,$members,$contact,$address1,$avatar_path){
+        public function insertResidents($fname,$lname,$email,$gender,$members,$contact,$address,$avatar_path){
+           
             try {
-                $sql ="INSERT INTO resident (firstname,lastname,emailaddress,gender,mstatus,members,contactnumber,address_id,avatar_path) VALUES(:fname,:lname,:email,:gender,:mstatus,:members,:contact,:address1,:avatar_path)";
+                $sql ="INSERT INTO resident (firstname,lastname,emailaddress,gender,members,contactnumber,
+                address_id,avatar_path) VALUES(:fname,:lname,:email,:gender,:members,:contact,:address_id,
+                :avatar_path)";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':gender',$gender);
-                $stmt->bindparam(':mstatus',$mstatus);
                 $stmt->bindparam(':members',$members);
                 $stmt->bindparam(':contact',$contact);
-                $stmt->bindparam(':address1',$address1);
+                $stmt->bindparam(':address_id',$address);
                 $stmt->bindparam(':avatar_path',$avatar_path);
                 $stmt->execute();
                 return true;
@@ -27,19 +29,18 @@
             }
         }
 
-        public function editResidents($fname,$lname,$email,$gender,$mstatus,$members,$contact,$address1,$destination){
+        public function editResidents($id, $fname,$lname,$email,$gender,$members,$contact,$address){
             try {
-                $sql = "UPDATE `resident` SET `firstname`=:fname,`lastname`=:lname,`emailaddress`=:email,`gender`=:gender, `mstatus`=:mstatus, `members`=:members, `contactnumber`=:contact,`address_id`=:address1 WHERE resident_id=:id";
+                $sql = "UPDATE `resident` SET `firstname`=:fname,`lastname`=:lname,`emailaddress`=:email,`gender`=:gender,`members`=:members,`contactnumber`=:contact,`address_id`=:address WHERE resident_id = :id ";
                 $stmt = $this->db->prepare($sql);
                 $stmt->bindparam(':id',$id);
                 $stmt->bindparam(':fname',$fname);
                 $stmt->bindparam(':lname',$lname);
                 $stmt->bindparam(':email',$email);
                 $stmt->bindparam(':gender',$gender);
-                $stmt->bindparam(':mstatus',$mstatus);
                 $stmt->bindparam(':members',$members);
                 $stmt->bindparam(':contact',$contact);
-                $stmt->bindparam(':address1',$address1);
+                $stmt->bindparam(':address',$address);
                 $stmt->execute();
                 return true;
             } catch (PDOException $e) {
@@ -48,26 +49,28 @@
             }
         }
 
+
         public function getResidents(){
             try{
-                $sql = "SELECT * FROM `resident` r inner join address1 a on r.address_id = a.address_id";
+                $sql = "SELECT * FROM `resident` r inner join address a on r.address_id = a.address_id";
                 $result = $this->db->query($sql);
                 return $result;
-            } catch (PDOException $e) {
+            }catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;
-            }
+           }
+           
         }
-
         public function getResidentDetails($id){
-            try{
-                $sql = "SELECT * FROM resident r inner join address1 s on r.address_id = a.address_id where resident_id = :id";
+           try{
+                $sql = "select * from resident r inner join address a on r.address_id = a.address_id 
+                where resident_id = :id";
                 $stmt = $this->db->prepare($sql);
-                $stmt->bindparam(':id',$id);
+                $stmt->bindparam(':id', $id);
                 $stmt->execute();
                 $result = $stmt->fetch();
                 return $result;
-            } catch (PDOException $e) {
+           }catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;
             }
